@@ -2,6 +2,7 @@
 import { localStorageWrapper } from './local_storage_wrapper';
 const THEME_COLOR_LIGHT = '#FFFFFF';
 const THEME_COLOR_DARK = '#202124';
+// const THEME_COLOR_DARK = '#8FF23F';
 
 setUpDarkColorSchemeCheckbox();
 

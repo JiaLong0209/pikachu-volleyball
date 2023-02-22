@@ -62,7 +62,6 @@ const NET_PILLAR_TOP_BOTTOM_Y_COORD = 192;
  * @constant @type {number}
  */
 const INFINITE_LOOP_LIMIT = 1000;
-
 /**
  * Class representing a pack of physical objects i.e. players and ball
  * whose physical values are calculated and set by {@link physicsEngine} function
@@ -379,6 +378,9 @@ function physicsEngine(player1, player2, ball, userInputArray) {
  * @return {boolean}
  */
 function isCollisionBetweenBallAndPlayerHappened(ball, playerX, playerY) {
+  // return ~~(ball.x - playerX) <= PLAYER_HALF_LENGTH && 
+  //        ~~(ball.y - playerY) <= PLAYER_HALF_LENGTH ? true : false;
+
   let diff = ball.x - playerX;
   if (Math.abs(diff) <= PLAYER_HALF_LENGTH) {
     diff = ball.y - playerY;
@@ -814,7 +816,7 @@ function letComputerDecideUserInput(player, ball, theOtherPlayer, userInput) {
     if (
       (ball.expectedLandingPointX <= leftBoundary ||
         ball.expectedLandingPointX >=
-          Number(player.isPlayer2) * GROUND_WIDTH + GROUND_HALF_WIDTH) &&
+        Number(player.isPlayer2) * GROUND_WIDTH + GROUND_HALF_WIDTH) &&
       player.computerWhereToStandBy === 0
     ) {
       // If conditions above met, the computer estimates the proper location to stay as the middle point of their side
@@ -853,7 +855,7 @@ function letComputerDecideUserInput(player, ball, theOtherPlayer, userInput) {
       ball.expectedLandingPointX > leftBoundary &&
       ball.expectedLandingPointX < rightBoundary &&
       Math.abs(ball.x - player.x) >
-        player.computerBoldness * 5 + PLAYER_LENGTH &&
+      player.computerBoldness * 5 + PLAYER_LENGTH &&
       ball.x > leftBoundary &&
       ball.x < rightBoundary &&
       ball.y > 174
@@ -918,7 +920,7 @@ function decideWhetherInputPowerHit(player, ball, theOtherPlayer, userInput) {
           (expectedLandingPointX <=
             Number(player.isPlayer2) * GROUND_HALF_WIDTH ||
             expectedLandingPointX >=
-              Number(player.isPlayer2) * GROUND_WIDTH + GROUND_HALF_WIDTH) &&
+            Number(player.isPlayer2) * GROUND_WIDTH + GROUND_HALF_WIDTH) &&
           Math.abs(expectedLandingPointX - theOtherPlayer.x) > PLAYER_LENGTH
         ) {
           userInput.xDirection = xDirection;
@@ -939,7 +941,7 @@ function decideWhetherInputPowerHit(player, ball, theOtherPlayer, userInput) {
           (expectedLandingPointX <=
             Number(player.isPlayer2) * GROUND_HALF_WIDTH ||
             expectedLandingPointX >=
-              Number(player.isPlayer2) * GROUND_WIDTH + GROUND_HALF_WIDTH) &&
+            Number(player.isPlayer2) * GROUND_WIDTH + GROUND_HALF_WIDTH) &&
           Math.abs(expectedLandingPointX - theOtherPlayer.x) > PLAYER_LENGTH
         ) {
           userInput.xDirection = xDirection;

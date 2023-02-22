@@ -89,15 +89,15 @@ export function setUpUI(pikaVolley, ticker) {
     }
     switch (options.speed) {
       case 'slow':
-        pikaVolley.normalFPS = 20;
+        pikaVolley.normalFPS = 30;
         ticker.maxFPS = pikaVolley.normalFPS;
         break;
       case 'medium':
-        pikaVolley.normalFPS = 25;
+        pikaVolley.normalFPS = 45;
         ticker.maxFPS = pikaVolley.normalFPS;
         break;
       case 'fast':
-        pikaVolley.normalFPS = 30;
+        pikaVolley.normalFPS = 60;
         ticker.maxFPS = pikaVolley.normalFPS;
         break;
     }
@@ -245,7 +245,7 @@ function setUpBtns(pikaVolley, applyAndSaveOptions) {
     applyAndSaveOptions({ sfx: 'off' });
   });
 
-  // Game speed:
+  // Game speed: original
   //   slow: 1 frame per 50ms = 20 FPS
   //   medium: 1 frame per 40ms = 25 FPS
   //   fast: 1 frame per 33ms = 30.303030... FPS
@@ -504,14 +504,14 @@ function setSelectedOptionsBtn(options) {
     const fastSpeedBtn = document.getElementById('fast-speed-btn');
     switch (options.speed) {
       case 'slow':
+        slowSpeedBtn.classList.add('selected');
         mediumSpeedBtn.classList.remove('selected');
         fastSpeedBtn.classList.remove('selected');
-        slowSpeedBtn.classList.add('selected');
         break;
       case 'medium':
-        fastSpeedBtn.classList.remove('selected');
         slowSpeedBtn.classList.remove('selected');
         mediumSpeedBtn.classList.add('selected');
+        fastSpeedBtn.classList.remove('selected');
         break;
       case 'fast':
         slowSpeedBtn.classList.remove('selected');

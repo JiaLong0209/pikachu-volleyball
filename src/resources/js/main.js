@@ -107,6 +107,7 @@ setUpInitialUI();
  * Set up the initial UI.
  */
 function setUpInitialUI() {
+  // console.log("Test 8")
   const loadingBox = document.getElementById('loading-box');
   const progressBar = document.getElementById('progress-bar');
   loader.onProgress.add(() => {

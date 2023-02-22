@@ -49,6 +49,8 @@
     "@pixi/sprite": "^6.4.2",
     "@pixi/sprite-animated": "^6.4.2",
     "@pixi/spritesheet": "^6.4.2",
-    "@pixi/ticker": "^6.4.2"
+    "@pixi/ticker": "^6.4.2",
+    "pixi.js": "^7.1.1",
+    "resolve-cwd": "^3.0.0"
   }
 }

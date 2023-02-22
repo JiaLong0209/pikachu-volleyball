@@ -59,3 +59,8 @@ The main tools used for reverse engineering are following.
 ## An intended deviation from the original game
 
 If there is no keyboard input, AI vs AI match is started after a while. In the original game, the match lasts only for about 40 seconds. But in this JavaScript version, there's no time limit to the AI vs AI match so you can watch it as long as you want.
+
+## Other intended deviations from the original game(jialong0209)
+
+* Pressing key "LeftShift" (for player1) or "RightShift" (for player2) can accelerate the speed-x of pikachu.
+* Change FPS to 30FPS, 45FPS, 60FPS.

@@ -3,6 +3,7 @@
  */
 'use strict';
 import { PikaUserInput } from './physics.js';
+let accelerationSpeed = 2;
 
 /**
  * Class representing a keyboard used to contorl a player
@@ -21,7 +22,7 @@ export class PikaKeyboard extends PikaUserInput {
    *                           when pressing down key and right key at the same time (Only player 1
    *                           has this key)
    */
-  constructor(left, right, up, down, powerHit, downRight = null) {
+  constructor(left, right, up, down, powerHit, downRight = null, acceleration = null) {
     super();
 
     /** @type {boolean} */
@@ -39,6 +40,8 @@ export class PikaKeyboard extends PikaUserInput {
     this.powerHitKey = new Key(powerHit);
     /** @type {Key} */
     this.downRightKey = new Key(downRight);
+    /** @type {Key} */
+    this.accelerationKey = new Key(acceleration);
   }
 
   /**
@@ -46,13 +49,18 @@ export class PikaKeyboard extends PikaUserInput {
    * This method is for freezing the keyboard input during the process of one game frame.
    */
   getInput() {
+
+    if(this.accelerationKey.isDown){
+      console.log("isDown");
+    }
+
     if (this.leftKey.isDown) {
-      this.xDirection = -1;
+      this.xDirection = this.accelerationKey.isDown? -1 * accelerationSpeed : -1;
     } else if (
       this.rightKey.isDown ||
       (this.downRightKey && this.downRightKey.isDown)
     ) {
-      this.xDirection = 1;
+      this.xDirection = this.accelerationKey.isDown? 1 * accelerationSpeed : 1
     } else {
       this.xDirection = 0;
     }
@@ -63,7 +71,7 @@ export class PikaKeyboard extends PikaUserInput {
       this.downKey.isDown ||
       (this.downRightKey && this.downRightKey.isDown)
     ) {
-      this.yDirection = 1;
+      this.yDirection = this.accelerationKey.isDown? 1 * accelerationSpeed : 1;
     } else {
       this.yDirection = 0;
     }
@@ -87,6 +95,8 @@ export class PikaKeyboard extends PikaUserInput {
     this.downKey.subscribe();
     this.powerHitKey.subscribe();
     this.downRightKey.subscribe();
+
+    this.accelerationKey.subscribe();
   }
 
   /**
@@ -99,6 +109,8 @@ export class PikaKeyboard extends PikaUserInput {
     this.downKey.unsubscribe();
     this.powerHitKey.unsubscribe();
     this.downRightKey.unsubscribe();
+
+    this.accelerationKey.unsubscribe();
   }
 }
 

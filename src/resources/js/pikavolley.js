@@ -40,18 +40,20 @@ export class PikachuVolleyball {
     this.audio = new PikaAudio(resources);
     this.physics = new PikaPhysics(true, true);
     this.keyboardArray = [
-      new PikaKeyboard('KeyD', 'KeyG', 'KeyR', 'KeyV', 'KeyZ', 'KeyF'), // for player1
+      new PikaKeyboard('KeyD', 'KeyG', 'KeyR', 'KeyF', 'KeyZ', 'KeyV','ShiftLeft'), // for player1
       new PikaKeyboard( // for player2
         'ArrowLeft',
         'ArrowRight',
         'ArrowUp',
         'ArrowDown',
-        'Enter'
+        'Enter',
+        'Digit1',
+        'ShiftRight'
       ),
     ];
 
     /** @type {number} game fps */
-    this.normalFPS = 25;
+    this.normalFPS = 45;
     /** @type {number} fps for slow motion */
     this.slowMotionFPS = 5;
 
@@ -111,6 +113,9 @@ export class PikachuVolleyball {
      * @type {GameState}
      */
     this.state = this.intro;
+
+
+    this.count = 0;
   }
 
   /**
@@ -118,6 +123,10 @@ export class PikachuVolleyball {
    * This function should be called at regular intervals ( interval = (1 / FPS) second )
    */
   gameLoop() {
+    if(this.count == 0){
+      console.log("Test 20.1");
+      this.count += 1;
+    }
     if (this.paused === true) {
       return;
     }
@@ -125,8 +134,7 @@ export class PikachuVolleyball {
       this.slowMotionNumOfSkippedFrames++;
       if (
         this.slowMotionNumOfSkippedFrames %
-          Math.round(this.normalFPS / this.slowMotionFPS) !==
-        0
+          Math.round(this.normalFPS / this.slowMotionFPS) !== 0
       ) {
         return;
       }
